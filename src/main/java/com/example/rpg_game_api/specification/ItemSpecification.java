@@ -15,24 +15,24 @@ public class ItemSpecification {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            if (filter.getName() != null && !filter.getName().isEmpty()) {
-                predicates.add(cb.like(cb.lower(root.get("name")), "%" + filter.getName().toLowerCase() + "%"));
+            if (filter.name() != null && !filter.name().isEmpty()) {
+                predicates.add(cb.like(cb.lower(root.get("name")), "%" + filter.name().toLowerCase() + "%"));
             }
 
-            if (filter.getType() != null) {
-                predicates.add(cb.equal(root.get("type"), filter.getType()));
+            if (filter.type() != null) {
+                predicates.add(cb.equal(root.get("type"), filter.type()));
             }
 
-            if (filter.getMinPrice() != null) {
-                predicates.add(cb.greaterThanOrEqualTo(root.get("price"), filter.getMinPrice()));
+            if (filter.minPrice() != null) {
+                predicates.add(cb.greaterThanOrEqualTo(root.get("price"), filter.minPrice()));
             }
 
-            if (filter.getMaxPrice() != null) {
-                predicates.add(cb.lessThanOrEqualTo(root.get("price"), filter.getMaxPrice()));
+            if (filter.maxPrice() != null) {
+                predicates.add(cb.lessThanOrEqualTo(root.get("price"), filter.maxPrice()));
             }
 
-            if (filter.getRarity() != null) {
-                predicates.add(cb.equal(root.get("rarity"), filter.getRarity()));
+            if (filter.rarity() != null) {
+                predicates.add(cb.equal(root.get("rarity"), filter.rarity()));
             }
 
             return cb.and(predicates.toArray(new Predicate[0]));

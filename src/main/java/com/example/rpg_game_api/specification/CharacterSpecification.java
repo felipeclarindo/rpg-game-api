@@ -14,12 +14,12 @@ public class CharacterSpecification {
         return (root, query, cb) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            if (filter.getName() != null && !filter.getName().isEmpty()) {
-                predicates.add(cb.like(cb.lower(root.get("name")), "%" + filter.getName().toLowerCase() + "%"));
+            if (filter.name() != null && !filter.name().isEmpty()) {
+                predicates.add(cb.like(cb.lower(root.get("name")), "%" + filter.name().toLowerCase() + "%"));
             }
 
-            if (filter.getCharacterType() != null) {
-                predicates.add(cb.equal(root.get("characterType"), filter.getCharacterType()));
+            if (filter.characterType() != null) {
+                predicates.add(cb.equal(root.get("characterType"), filter.characterType()));
             }
 
             return cb.and(predicates.toArray(new Predicate[0]));
